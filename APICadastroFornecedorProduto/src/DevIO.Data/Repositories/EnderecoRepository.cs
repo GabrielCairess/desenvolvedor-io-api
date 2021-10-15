@@ -9,7 +9,7 @@ namespace DevIO.Data.Repositories
 {
     public class EnderecoRepository : Repository<Endereco>, IEnderecoRepository
     {
-        public EnderecoRepository(ApiDbContext context) : base(context)
+        public EnderecoRepository(MeuDbContext context) : base(context)
         {
 
         }

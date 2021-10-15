@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DevIO.Data.Migrations
 {
-    [DbContext(typeof(ApiDbContext))]
+    [DbContext(typeof(MeuDbContext))]
     partial class MeuDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

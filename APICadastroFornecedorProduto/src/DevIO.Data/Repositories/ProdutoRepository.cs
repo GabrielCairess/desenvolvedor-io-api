@@ -11,7 +11,7 @@ namespace DevIO.Data.Repositories
 {
     public class ProdutoRepository : Repository<Produto>, IProdutoRepository
     {
-        public ProdutoRepository(ApiDbContext context) : base(context)
+        public ProdutoRepository(MeuDbContext context) : base(context)
         {
 
         }

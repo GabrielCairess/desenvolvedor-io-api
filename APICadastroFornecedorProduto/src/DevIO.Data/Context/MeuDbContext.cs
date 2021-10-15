@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace DevIO.Data.Context
 {
-    public class ApiDbContext : DbContext
+    public class MeuDbContext : DbContext
     {
-        public ApiDbContext(DbContextOptions options) : base(options)
+        public MeuDbContext(DbContextOptions options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
@@ -24,7 +24,7 @@ namespace DevIO.Data.Context
                 property.SetColumnType("VARCHAR(100)");
             }
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApiDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuDbContext).Assembly);
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
