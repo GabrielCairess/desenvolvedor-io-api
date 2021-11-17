@@ -43,10 +43,8 @@ namespace DevIO.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            
             app.UseMvcConfiguration();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
