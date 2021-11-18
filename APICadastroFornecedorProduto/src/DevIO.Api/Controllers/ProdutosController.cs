@@ -1,7 +1,9 @@
 ﻿using AppMvcBasica.Models;
 using AutoMapper;
+using DevIO.Api.Extensions;
 using DevIO.Api.ViewModels;
 using DevIO.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace DevIO.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutosController : MainController
@@ -23,7 +26,8 @@ namespace DevIO.Api.Controllers
         public ProdutosController(IProdutoRepository produtoRepository,
             IProdutoService produtoService,
             IMapper mapper,
-            INotificador notificador) : base(notificador)
+            INotificador notificador,
+            IUser appUser) : base(notificador, appUser)
         {
             _produtoRepository = produtoRepository;
             _produtoService = produtoService;
@@ -46,6 +50,7 @@ namespace DevIO.Api.Controllers
             return Ok(produto);
         }
 
+        [ClaimsAuthorize("Produto", "Adicionar")]
         [HttpPost]
         public async Task<ActionResult<ProdutoViewModel>> Adicionar(ProdutoViewModel produtoViewModel)
         {
@@ -64,6 +69,7 @@ namespace DevIO.Api.Controllers
             return CustomResponse(produtoViewModel);
         }
 
+        [ClaimsAuthorize("Produto", "Atualizar")]
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Atualizar(Guid id, ProdutoViewModel produtoViewModel)
         {
@@ -100,6 +106,7 @@ namespace DevIO.Api.Controllers
         }
 
 
+        [ClaimsAuthorize("Produto", "Remover")]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<ProdutoViewModel>> Excluir(Guid id)
         {
