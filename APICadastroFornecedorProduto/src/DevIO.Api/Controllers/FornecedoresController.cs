@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 namespace DevIO.Api.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{vsersion:apiVersion}/[controller]")]
     [ApiController]
     public class FornecedoresController : MainController
     {
@@ -34,6 +35,7 @@ namespace DevIO.Api.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FornecedorViewModel>>> ObterTodos()
         {
